@@ -156,7 +156,7 @@ public class OverworldBattleManager : MonoBehaviour
             {
                 state = BattleState.WON;
                 //end battle player wins
-                //EndBattle();
+                StartCoroutine(EndBattle());
             }
             else
             {
@@ -185,7 +185,7 @@ public class OverworldBattleManager : MonoBehaviour
             if (playerUnit.currentHp == 0)
             {
                 state = BattleState.LOST;
-                //EndBattle();
+                StartCoroutine(EndBattle());
             }
             else
             {
@@ -194,5 +194,26 @@ public class OverworldBattleManager : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator EndBattle()
+    {
+        if (state == BattleState.WON)
+        {
+            
+            actionMenuText.text = enemyUnit.unitName + " was defeated!";
+            yield return new WaitForSeconds(3.0f);
+            Destroy(enemyUnit.gameObject);
+            Destroy(overlay.gameObject);
+            
+            GameManager.Instance.gameState = GameState.NEUTRAL;
+        }
+        else
+        {
+            actionMenuText.text = "You were defeated!";
+            yield return new WaitForSeconds(3.0f);
+            /*playerUnit = null;
+            enemyUnit = null;*/
+        }
     }
 }
