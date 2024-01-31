@@ -221,6 +221,7 @@ public class OverworldBattleManager : MonoBehaviour
             Destroy(overlay.gameObject);
             
             GameManager.Instance.gameState = GameState.NEUTRAL;
+            battleCamera.Follow = playerUnit.gameObject.transform;
         }
         else
         {
