@@ -14,7 +14,8 @@ public class CombatUnit : Unit
     public List<Skill> skills;
     public DamageType attackDamageType;
     public List<DamageType> resistances;
-    public float damageReduction;
+    public List<DamageType> weaknesses;
+    public float resistanceModifier;
 
 
     public bool Attack(CombatUnit target)
@@ -27,10 +28,18 @@ public class CombatUnit : Unit
                 if (target.resistances.Contains(attackDamageType))
                 {
                     Debug.Log("Damage reduced!");
-                    damageDealt = Random.Range(minDamage, maxDamage) + damageModifier * damageReduction;
+                    damageDealt = Random.Range(minDamage, maxDamage) + damageModifier * resistanceModifier;
                     target.ChangeHealth(-damageDealt);
                     return true;
-                } else
+                } else if (target.weaknesses.Contains(attackDamageType))
+                {
+                    Debug.Log("Damage increased!");
+                    damageDealt = Random.Range(minDamage, maxDamage) + damageModifier / resistanceModifier;
+                    target.ChangeHealth(-damageDealt);
+                    return true;
+                } 
+                
+                else
                 {
                     damageDealt = Random.Range(minDamage, maxDamage) + damageModifier;
                     target.ChangeHealth(-damageDealt);

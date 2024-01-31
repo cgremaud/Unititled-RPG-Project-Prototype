@@ -63,6 +63,8 @@ public class OverworldBattleManager : MonoBehaviour
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
         actionMenuText.text = "Battle start!";
+
+        //display start text and wait til moving to player turn. 
         yield return new WaitForSeconds(2.0f);
         state = BattleState.PLAYERTURN;
         PlayerTurn();
@@ -121,8 +123,9 @@ public class OverworldBattleManager : MonoBehaviour
             {
                 state = BattleState.WON;
                 //end battle player wins
-                //EndBattle();
+                StartCoroutine(EndBattle());
             }
+
             else
             {
                 state = BattleState.ENEMYTURN;
