@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,6 +28,8 @@ public class OverworldBattleManager : MonoBehaviour
     public Animator playerAnimator;
     public Animator enemyAnimator;
 
+    public CinemachineVirtualCamera battleCamera;
+
     
     void Awake()
     {
@@ -35,14 +38,22 @@ public class OverworldBattleManager : MonoBehaviour
 
     public IEnumerator StartBattle(PlayerController player, CombatUnit enemy)
     {
+        //set the camera follow position to the first child of enemy which is the battle focus point. Refactor to make this live on the enemy party.
+        battleCamera.Follow = enemy.gameObject.transform.GetChild(0);
+        //Set player position to be opposite the enemy. Refactor to set relative to the battle focus point.
         player.gameObject.transform.position = enemy.transform.position + new Vector3(5,0,0);
+        //get the hard bodies.
         Rigidbody2D playerRb = player.gameObject.GetComponent<Rigidbody2D>();
         playerRb.velocity = Vector3.zero;
-        Debug.Log("Game manager called OverworldbattleManager:");
-        overlay = Instantiate(UIOverlayPrefab, UIOverlayPrefab.transform);
-        actionMenuText = GameObject.Find("ActionMenuText").GetComponent<TextMeshProUGUI>();
+        //Debug.Log("Game manager called OverworldbattleManager:");
+
+        //set player and enemy  units. Will be a list in the future.
         playerUnit = player;
         enemyUnit = enemy;
+
+        //set up battle UI
+        overlay = Instantiate(UIOverlayPrefab, UIOverlayPrefab.transform);
+        actionMenuText = GameObject.Find("ActionMenuText").GetComponent<TextMeshProUGUI>();
         playerHUD = GameObject.Find("PlayerStatus").GetComponent<StatusHUD>();
         enemyHUD = GameObject.Find("EnemyStatus").GetComponent<StatusHUD>();
         attackButton = GameObject.Find("AttackButton").GetComponent<Button>();

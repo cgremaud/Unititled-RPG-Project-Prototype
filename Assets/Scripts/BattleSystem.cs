@@ -14,7 +14,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject enemyPrefab;
 
     public PlayerController playerUnit;
-    public Unit enemyUnit;
+    public Enemy enemyUnit;
 
     public GameObject enemySpawnPoint;
     public GameObject playerSpawnPoint;
@@ -49,7 +49,7 @@ public class BattleSystem : MonoBehaviour
         Animator playerAnimator = playerGO.GetComponent<Animator>();
         playerAnimator.SetFloat("Look X", 1.0f);
         GameObject enemyGO = Instantiate(enemyPrefab, enemySpawnPoint.transform.position, enemyPrefab.transform.rotation);
-        enemyUnit = enemyGO.GetComponent<Unit>();
+        enemyUnit = enemyGO.GetComponent<Enemy>();
 
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);

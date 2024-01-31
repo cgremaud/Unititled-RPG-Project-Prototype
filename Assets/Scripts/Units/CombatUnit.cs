@@ -2,25 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageType { FIRE, ICE }
+
 public class CombatUnit : Unit
 {
+    
     public int minDamage;
     public int maxDamage;
     public int damageModifier;
     public int hitModifier;
     public List<Skill> skills;
-    
+    public DamageType attackDamageType;
+    public List<DamageType> resistances;
+    public float damageReduction;
 
-    public override bool Attack(Unit target)
+
+    public bool Attack(CombatUnit target)
     {
         if (target != null)
         {
             int diceRoll = Random.Range(1, 21);
             if (diceRoll + hitModifier >= target.armorClass)
             {
-                damageDealt = Random.Range(minDamage, maxDamage) + damageModifier;
-                target.ChangeHealth(-damageDealt);
-                return true;
+                if (target.resistances.Contains(attackDamageType))
+                {
+                    Debug.Log("Damage reduced!");
+                    damageDealt = Random.Range(minDamage, maxDamage) + damageModifier * damageReduction;
+                    target.ChangeHealth(-damageDealt);
+                    return true;
+                } else
+                {
+                    damageDealt = Random.Range(minDamage, maxDamage) + damageModifier;
+                    target.ChangeHealth(-damageDealt);
+                    return true;
+                }
             } else {
                 return false;
             }

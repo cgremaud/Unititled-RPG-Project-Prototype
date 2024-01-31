@@ -13,9 +13,10 @@ public class Unit : MonoBehaviour
     public float damageDealt;
     public float amountHealed;
     public float armorClass;
+    
 
     //will be moved down to combat unit 
-    public virtual bool Attack (Unit target)
+/*    public virtual bool Attack (Unit target)
     {
         if (target != null )
         {
@@ -25,7 +26,7 @@ public class Unit : MonoBehaviour
         {
             return false;
         }
-    }
+    }*/
 
     public void Heal (Unit target)
     {
