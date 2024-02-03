@@ -12,8 +12,13 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+        }
         Instance = this;
         gameState = GameState.NEUTRAL;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
