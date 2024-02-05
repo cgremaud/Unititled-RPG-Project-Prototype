@@ -51,7 +51,8 @@ public class OverworldBattleManager : MonoBehaviour
         playerUnit = player;
         enemyUnit = enemy;
 
-        //set up battle UI
+        //set up battle UI. TODO abstract this to new SetupBattleUI method
+        //todo refactor to use getcomponentinchildren of overlay rather than gameobject.find
         overlay = Instantiate(UIOverlayPrefab, UIOverlayPrefab.transform);
         actionMenuText = GameObject.Find("ActionMenuText").GetComponent<TextMeshProUGUI>();
         playerHUD = GameObject.Find("PlayerStatus").GetComponent<StatusHUD>();

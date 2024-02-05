@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : CombatUnit
 {
     public InputAction WASDMoveInput;
+    public InputAction ControllerLeftStickInput;
     public InputAction KeyboardInteractionInput;
 
     private Vector2 playerInputDirection;
@@ -20,6 +21,7 @@ public class PlayerController : CombatUnit
     void Start()
     {
         WASDMoveInput.Enable();
+        ControllerLeftStickInput.Enable();
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
     }
@@ -28,6 +30,10 @@ public class PlayerController : CombatUnit
     void Update()
     {
         playerInputDirection = WASDMoveInput.ReadValue<Vector2>();
+        if(playerInputDirection == Vector2.zero)
+        {
+            playerInputDirection = ControllerLeftStickInput.ReadValue<Vector2>();
+        }
         if (playerInputDirection != Vector2.zero ) 
         {
             lookDirection.Set(playerInputDirection.x, playerInputDirection.y);
