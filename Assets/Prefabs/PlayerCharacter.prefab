@@ -137,6 +137,11 @@ MonoBehaviour:
   skills:
   - {fileID: 1367146715243030777, guid: 598639a69a54790408118cf6c48e74d7, type: 3}
   - {fileID: 1367146715243030777, guid: e6d388eb79cf84e4ba00f78af67cdbcd, type: 3}
+  - {fileID: -8968574066978125527, guid: c3f44bcdd28e21d49bb29972a0c0dae6, type: 3}
+  attackDamageType: 0
+  resistances: 
+  weaknesses: 
+  resistanceModifier: 0
   WASDMoveInput:
     m_Name: WASD Move Input
     m_Type: 0
@@ -185,6 +190,15 @@ MonoBehaviour:
       m_Groups: 
       m_Action: WASD Move Input
       m_Flags: 8
+    m_Flags: 0
+  ControllerLeftStickInput:
+    m_Name: Controller Left Stick Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d66ef347-2669-4dec-8842-17b73f7d7fa4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
     m_Flags: 0
   KeyboardInteractionInput:
     m_Name: Keyboard Interaction Input

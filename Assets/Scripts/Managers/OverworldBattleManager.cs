@@ -73,6 +73,7 @@ public class OverworldBattleManager : MonoBehaviour
 
     void PlayerTurn()
     {
+        //TODO: add handling for player parties
         actionMenuText.text = "Your turn";
 
     }
@@ -143,10 +144,18 @@ public class OverworldBattleManager : MonoBehaviour
 
     public IEnumerator PlayerSkill(int skillIndex)
     {
+        //todo move this to player and call here as playerUnit.UseSkill(skillIndex)
         if (state == BattleState.PLAYERTURN)
         {
+            if (playerUnit.currentMp < playerUnit.skills[skillIndex].mpCost)
+            {
+                actionMenuText.text = "Miss!";
+                yield return new WaitForSeconds(3.0f);
+                
+            }
             if (playerUnit.skills[skillIndex].type == SkillType.HEAL)
             {
+                //TODO: refactor to instantiate skill prefab
                 playerUnit.ChangeHealth(playerUnit.skills[skillIndex].baseValue);
                 actionMenuText.text = "Player healed for " + playerUnit.skills[skillIndex].baseValue + " hp!";
                 playerHUD.SetHp(playerUnit.currentHp);
@@ -161,12 +170,21 @@ public class OverworldBattleManager : MonoBehaviour
                 playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - playerUnit.skills[skillIndex].mpCost, 0, playerUnit.maxMp);
                 playerHUD.SetMp(playerUnit.currentMp);
             }
+            else if (playerUnit.skills[skillIndex].type == SkillType.PROJECTILE)
+            {
+                ProjectileSkill skillObj = (ProjectileSkill)playerUnit.skills[skillIndex];
+                skillObj.LaunchProjectiles(enemyUnit);
+                playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - playerUnit.skills[skillIndex].mpCost, 0, playerUnit.maxMp);
+                playerHUD.SetMp(playerUnit.currentMp);
+                Debug.Log(playerUnit.currentMp);
+            }
+            //QUESTION: Can I add handling for "projectile" "aoe" etc. type skills here? Answer yes I kind of have to
             else
             {
                 actionMenuText.text = "Miss!";
             }
-            Debug.Log("Hit line 119");
             yield return new WaitForSeconds(3.0f);
+            enemyHUD.SetHp(enemyUnit.currentHp);
             if (enemyUnit.currentHp == 0)
             {
                 state = BattleState.WON;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillType { HEAL, DAMAGE }
+public enum SkillType { HEAL, DAMAGE, PROJECTILE, AREAEFFECT }
 
 public class Skill : Ability
 {
