@@ -144,16 +144,17 @@ public class OverworldBattleManager : MonoBehaviour
 
     public IEnumerator PlayerSkill(int skillIndex)
     {
+        Skill selectedSkill = playerUnit.skills[skillIndex];
         //todo move this to player and call here as playerUnit.UseSkill(skillIndex)
         if (state == BattleState.PLAYERTURN)
         {
-            if (playerUnit.currentMp < playerUnit.skills[skillIndex].mpCost)
+            if (playerUnit.currentMp < selectedSkill.mpCost)
             {
-                actionMenuText.text = "Miss!";
+                actionMenuText.text = "not enough mp!";
                 yield return new WaitForSeconds(3.0f);
                 
             }
-            if (playerUnit.skills[skillIndex].type == SkillType.HEAL)
+            if (selectedSkill.type == SkillType.HEAL)
             {
                 //TODO: refactor to instantiate skill prefab
                 playerUnit.ChangeHealth(playerUnit.skills[skillIndex].baseValue);
@@ -162,15 +163,16 @@ public class OverworldBattleManager : MonoBehaviour
                 playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - playerUnit.skills[skillIndex].mpCost, 0, playerUnit.maxMp);
                 playerHUD.SetMp(playerUnit.currentMp);
             }
-            else if (playerUnit.skills[skillIndex].type == SkillType.DAMAGE)
+            else if (selectedSkill.type == SkillType.DAMAGE)
             {
-                enemyUnit.ChangeHealth(-playerUnit.skills[skillIndex].baseValue);
+                //todo: base value * player's magic dmg modifier
+                enemyUnit.ChangeHealth(-selectedSkill.baseValue);
                 enemyHUD.SetHp(enemyUnit.currentHp);
                 actionMenuText.text = "Player dealt " + playerUnit.skills[skillIndex].baseValue + " damage to " + enemyUnit.unitName + "!";
                 playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - playerUnit.skills[skillIndex].mpCost, 0, playerUnit.maxMp);
                 playerHUD.SetMp(playerUnit.currentMp);
             }
-            else if (playerUnit.skills[skillIndex].type == SkillType.PROJECTILE)
+            else if (selectedSkill.type == SkillType.PROJECTILE)
             {
                 ProjectileSkill skillObj = (ProjectileSkill)playerUnit.skills[skillIndex];
                 skillObj.LaunchProjectiles(enemyUnit);
@@ -178,7 +180,7 @@ public class OverworldBattleManager : MonoBehaviour
                 playerHUD.SetMp(playerUnit.currentMp);
                 Debug.Log(playerUnit.currentMp);
             }
-            //QUESTION: Can I add handling for "projectile" "aoe" etc. type skills here? Answer yes I kind of have to
+            
             else
             {
                 actionMenuText.text = "Miss!";
