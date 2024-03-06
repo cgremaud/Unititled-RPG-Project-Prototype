@@ -157,10 +157,10 @@ public class OverworldBattleManager : MonoBehaviour
             if (selectedSkill.type == SkillType.HEAL)
             {
                 //TODO: refactor to instantiate skill prefab
-                playerUnit.ChangeHealth(playerUnit.skills[skillIndex].baseValue);
-                actionMenuText.text = "Player healed for " + playerUnit.skills[skillIndex].baseValue + " hp!";
+                playerUnit.ChangeHealth(selectedSkill.baseValue);
+                actionMenuText.text = "Player healed for " + selectedSkill.baseValue + " hp!";
                 playerHUD.SetHp(playerUnit.currentHp);
-                playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - playerUnit.skills[skillIndex].mpCost, 0, playerUnit.maxMp);
+                playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - selectedSkill.mpCost, 0, playerUnit.maxMp);
                 playerHUD.SetMp(playerUnit.currentMp);
             }
             else if (selectedSkill.type == SkillType.DAMAGE)
@@ -168,15 +168,15 @@ public class OverworldBattleManager : MonoBehaviour
                 //todo: base value * player's magic dmg modifier
                 enemyUnit.ChangeHealth(-selectedSkill.baseValue);
                 enemyHUD.SetHp(enemyUnit.currentHp);
-                actionMenuText.text = "Player dealt " + playerUnit.skills[skillIndex].baseValue + " damage to " + enemyUnit.unitName + "!";
-                playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - playerUnit.skills[skillIndex].mpCost, 0, playerUnit.maxMp);
+                actionMenuText.text = "Player dealt " + selectedSkill.baseValue + " damage to " + enemyUnit.unitName + "!";
+                playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - selectedSkill.mpCost, 0, playerUnit.maxMp);
                 playerHUD.SetMp(playerUnit.currentMp);
             }
             else if (selectedSkill.type == SkillType.PROJECTILE)
             {
                 ProjectileSkill skillObj = (ProjectileSkill)playerUnit.skills[skillIndex];
                 skillObj.LaunchProjectiles(enemyUnit);
-                playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - playerUnit.skills[skillIndex].mpCost, 0, playerUnit.maxMp);
+                playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - selectedSkill.mpCost, 0, playerUnit.maxMp);
                 playerHUD.SetMp(playerUnit.currentMp);
                 Debug.Log(playerUnit.currentMp);
             }
