@@ -29,6 +29,7 @@ public class OverworldBattleManager : MonoBehaviour
     public Animator enemyAnimator;
 
     public CinemachineVirtualCamera battleCamera;
+    public Camera gameCamera;
 
     
     void Awake()
@@ -104,6 +105,28 @@ public class OverworldBattleManager : MonoBehaviour
         else
         {
             return;
+        }
+    }
+
+    public CombatUnit GetTarget()
+    {
+        CombatUnit target;
+        var ray = gameCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            target = GetComponentInParent<CombatUnit>();
+
+        } else
+        {
+            target = null;
+        }
+        if (target != null)
+        {
+            return target;
+        } else
+        {
+            return null;
         }
     }
 
