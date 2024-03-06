@@ -51,6 +51,7 @@ MonoBehaviour:
   mpCost: 5
   projectilePrefab: {fileID: 6196018790838441064, guid: abda312972bbcc7439b14692eb604022, type: 3}
   projectileCount: 3
+  projectilesFired: 0
   thrust: 100
   yRange: 1
   projectileDelay: 0.3

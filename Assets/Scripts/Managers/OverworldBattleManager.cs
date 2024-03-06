@@ -174,8 +174,8 @@ public class OverworldBattleManager : MonoBehaviour
             }
             else if (selectedSkill.type == SkillType.PROJECTILE)
             {
-                ProjectileSkill skillObj = (ProjectileSkill)playerUnit.skills[skillIndex];
-                skillObj.LaunchProjectiles(enemyUnit);
+                ProjectileSkill skillObj = Instantiate((ProjectileSkill)playerUnit.skills[skillIndex]);
+                skillObj.LaunchProjectiles(enemyUnit, playerUnit);
                 playerUnit.currentMp = Mathf.Clamp(playerUnit.currentMp - selectedSkill.mpCost, 0, playerUnit.maxMp);
                 playerHUD.SetMp(playerUnit.currentMp);
                 Debug.Log(playerUnit.currentMp);
