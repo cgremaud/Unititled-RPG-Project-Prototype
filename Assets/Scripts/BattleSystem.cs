@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, SUSPEND }
+//public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, SUSPEND }
 
 public class BattleSystem : MonoBehaviour
 {

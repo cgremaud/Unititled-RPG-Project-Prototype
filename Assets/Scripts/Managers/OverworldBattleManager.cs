@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-//will eventually move enum declaration here instead of BattleSystem
-//public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, SUSPEND }
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, SUSPEND }
 public class OverworldBattleManager : MonoBehaviour
 {
     public static OverworldBattleManager Instance { get; private set; }

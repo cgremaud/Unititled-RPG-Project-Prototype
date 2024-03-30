@@ -38077,6 +38077,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 0}
   enemyAnimator: {fileID: 0}
   battleCamera: {fileID: 1524637467}
+  gameCamera: {fileID: 0}
 --- !u!1 &1283298494
 GameObject:
   m_ObjectHideFlags: 0
@@ -38988,7 +38989,7 @@ Transform:
   m_GameObject: {fileID: 1871936336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0264509, y: 10.026036, z: 0}
+  m_LocalPosition: {x: -22.74, y: 3.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39511,67 +39512,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efdf24bd8d8310045b9abd009bdf3afd, type: 3}
---- !u!1001 &6466821325430579793
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -7883186597123493645, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: damageDealt
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 440976705558864898, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196018790838441064, guid: abda312972bbcc7439b14692eb604022, type: 3}
-      propertyPath: m_Name
-      value: Red_Pool_Ball
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: abda312972bbcc7439b14692eb604022, type: 3}
 --- !u!1001 &9018057932697370906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39854,7 +39794,6 @@ SceneRoots:
   - {fileID: 804199436}
   - {fileID: 1808016374}
   - {fileID: 1336995173}
-  - {fileID: 6466821325430579793}
   - {fileID: 1871936340}
   - {fileID: 1570679379}
   - {fileID: 572977807}
